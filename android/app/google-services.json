@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "362265907984",
+    "project_id": "tirec-getx",
+    "storage_bucket": "tirec-getx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362265907984:android:d109fd3b43e94cfd0dcb95",
+        "android_client_info": {
+          "package_name": "com.tirecgetx.tirec_getx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362265907984-td7on7vsg2gbck0u31gq6kiae0i9u9n6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tirecgetx.tirec_getx",
+            "certificate_hash": "712f8db92291ec970fdc66c7b31a3110c47efa10"
+          }
+        },
+        {
+          "client_id": "362265907984-l7duk54f5bo00juu2insq6d3u5kkdc83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUKK74LnKDSB1W_yq2XWE4OOROmZ8qulk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362265907984-l7duk54f5bo00juu2insq6d3u5kkdc83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
