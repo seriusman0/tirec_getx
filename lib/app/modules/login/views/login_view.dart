@@ -18,7 +18,7 @@ class LoginView extends GetView<LoginController> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(
+          child: ListView(
             children: [
               TextField(
                 controller: controller.emailC,
@@ -39,10 +39,18 @@ class LoginView extends GetView<LoginController> {
               SizedBox(
                 height: 50,
               ),
-              ElevatedButton(
-                  onPressed: () => authC.login(
-                      controller.emailC.text, controller.passC.text),
-                  child: Text("LOGIN")),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                      onPressed: () => authC.login(
+                          controller.emailC.text, controller.passC.text),
+                      child: Text("LOGIN")),
+                  ElevatedButton(
+                      onPressed: () => authC.LoginAnonimous(),
+                      child: Text("LOGIN ANONIMOUS")),
+                ],
+              ),
               SizedBox(
                 height: 10,
               ),
@@ -55,6 +63,20 @@ class LoginView extends GetView<LoginController> {
                       child: Text("DAFTAR SEKARANG"))
                 ],
               ),
+              Divider(color: Colors.black),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: controller.phoneC,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                    labelText: "Phone Number", border: OutlineInputBorder()),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                  onPressed: () => authC.loginPhone(controller.phoneC.text),
+                  child: Text("Send OTP ")),
             ],
           ),
         ));

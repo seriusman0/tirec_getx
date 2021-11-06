@@ -10,6 +10,56 @@ class AuthController extends GetxController {
   // }
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
+  void loginWithOTP(String otp, String verifId) async {
+    try {
+      PhoneAuthCredential myCredential =
+          PhoneAuthProvider.credential(verificationId: verifId, smsCode: otp);
+      await auth.signInWithCredential(myCredential);
+      Get.offAllNamed(Routes.HOME);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  void loginPhone(String phone) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phone,
+      verificationCompleted: (PhoneAuthCredential) {
+        print("PhoneAuthCredential".toUpperCase());
+        print(PhoneAuthCredential);
+        print("===================");
+      },
+      verificationFailed: (error) => Get.defaultDialog(
+        title: "Terjadi Kesalahan",
+        middleText: error.message!,
+      ),
+      codeSent: (verificationId, forceResendingToken) {
+        print("verificationId".toUpperCase());
+        print(verificationId);
+        print("___________________");
+        print("forceResendingToken".toUpperCase());
+        print(forceResendingToken);
+        print("===================");
+        Get.toNamed(Routes.OTP, arguments: verificationId);
+      },
+      codeAutoRetrievalTimeout: (verificationId) {
+        print("codeAutoRetrievalTimeout".toUpperCase());
+        print(verificationId);
+        print("___________________");
+      },
+    );
+  }
+
+  Future<void> LoginAnonimous() async {
+    try {
+      UserCredential myUser = await auth.signInAnonymously();
+      print(myUser);
+      Get.offAllNamed(Routes.HOME);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   void resetPassword(String email) async {
     if (email != "" && GetUtils.isEmail(email)) {
       try {
@@ -41,6 +91,7 @@ class AuthController extends GetxController {
     try {
       UserCredential myUser = await auth.signInWithEmailAndPassword(
           email: email, password: password);
+      print(myUser);
       if (myUser.user!.emailVerified) {
         Get.offAllNamed(Routes.HOME);
       } else {
