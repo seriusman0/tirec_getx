@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tirec_getx/app/controllers/auth_controller.dart';
+// ignore: unused_import
 import 'package:tirec_getx/app/routes/app_pages.dart';
 
 import '../controllers/signup_controller.dart';

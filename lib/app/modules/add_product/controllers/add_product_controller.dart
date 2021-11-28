@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +5,11 @@ import 'package:get/get.dart';
 class AddProductController extends GetxController {
   late TextEditingController nameC;
   late TextEditingController priceC;
+  late TextEditingController fDateC;
+  late TextEditingController lDateC;
+  late TextEditingController noteC;
+  late TextEditingController statusC;
+  late TextEditingController recC;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   void addProduct(String name, String price) async {
@@ -17,7 +20,7 @@ class AddProductController extends GetxController {
         "name": name,
         "price": int.parse(price),
         "fDate": new DateTime.now(),
-        "lDate": "",
+        "lDate": new DateTime.now(),
         "note": "",
         "status": false,
         "rec": false,

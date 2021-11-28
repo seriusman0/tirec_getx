@@ -5,6 +5,11 @@ import 'package:get/get.dart';
 class EditProductController extends GetxController {
   late TextEditingController nameC;
   late TextEditingController priceC;
+  late TextEditingController fDateC;
+  late TextEditingController lDateC;
+  late TextEditingController noteC;
+  late TextEditingController statusC;
+  late TextEditingController recC;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<DocumentSnapshot<Object?>> getData(String docID) async {
@@ -12,23 +17,24 @@ class EditProductController extends GetxController {
     return docRef.get();
   }
 
-  void editProduct(String name, String price) async {
-    CollectionReference products = firestore.collection("products");
+  void editProduct(String name, String price, String fDate, String lDate,
+      String note, String status, String rec, String docID) async {
+    DocumentReference docData = firestore.collection("products").doc(docID);
 
     try {
-      await products.add({
+      await docData.update({
         "name": name,
         "price": int.parse(price),
-        "fDate": new DateTime.now(),
-        "lDate": "",
-        "note": "",
-        "status": false,
-        "rec": false,
+        "fDate": fDate,
+        "lDate": lDate,
+        "note": note,
+        "status": status,
+        "rec": rec,
       });
 
       Get.defaultDialog(
         title: "Berhasil",
-        middleText: "Berhasil menambahkan produk",
+        middleText: "Berhasil edit data produk",
         onConfirm: () {
           nameC.clear();
           priceC.clear();
@@ -41,7 +47,7 @@ class EditProductController extends GetxController {
       print(e.toString());
       Get.defaultDialog(
         title: "Terjadi Kesalahan",
-        middleText: "Tidak berhasil menambahkan produk",
+        middleText: "Tidak berhasil edit data produk",
       );
     }
   }
@@ -50,6 +56,11 @@ class EditProductController extends GetxController {
   onInit() {
     nameC = TextEditingController();
     priceC = TextEditingController();
+    fDateC = TextEditingController();
+    lDateC = TextEditingController();
+    noteC = TextEditingController();
+    statusC = TextEditingController();
+    recC = TextEditingController();
     super.onInit();
   }
 
@@ -57,6 +68,11 @@ class EditProductController extends GetxController {
   onClose() {
     nameC.dispose();
     priceC.dispose();
+    fDateC.dispose();
+    lDateC.dispose();
+    noteC.dispose();
+    statusC.dispose();
+    recC.dispose();
     super.onClose();
   }
 }
