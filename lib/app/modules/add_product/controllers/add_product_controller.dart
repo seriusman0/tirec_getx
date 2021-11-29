@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tirec_getx/app/data/models/product_model.dart';
 
 class AddProductController extends GetxController {
   late TextEditingController nameC;
@@ -10,21 +11,28 @@ class AddProductController extends GetxController {
   late TextEditingController noteC;
   late TextEditingController statusC;
   late TextEditingController recC;
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  final productRef =
+      FirebaseFirestore.instance.collection("products").withConverter(
+            fromFirestore: (snapshot, options) =>
+                Product.fromJson(snapshot.data()!),
+            toFirestore: (value, options) => value.toJson(),
+          );
+  // FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   void addProduct(String name, String price) async {
-    CollectionReference products = firestore.collection("products");
+    // CollectionReference products = firestore.collection("products");
 
     try {
-      await products.add({
-        "name": name,
-        "price": int.parse(price),
-        "fDate": new DateTime.now(),
-        "lDate": new DateTime.now(),
-        "note": "",
-        "status": false,
-        "rec": false,
-      });
+      await productRef.add(Product(
+        name: name,
+        price: price,
+        fDate: (DateTime.now()).toString(),
+        lDate: "",
+        note: "",
+        status: false.toString(),
+        rec: false.toString(),
+      ));
 
       Get.defaultDialog(
         title: "Berhasil",

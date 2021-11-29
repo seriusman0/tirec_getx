@@ -1,17 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:tirec_getx/app/data/models/product_model.dart';
+import '../../../data/models/product_model.dart';
 
 class HomeController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<QuerySnapshot<Object?>> getData() async {
-    CollectionReference products = firestore.collection("products");
-    return products.get();
-  }
-
-  Stream<QuerySnapshot<Object?>> streamData() {
-    CollectionReference products = firestore.collection("products");
-    return products.orderBy("fDate", descending: true).snapshots();
+  final productRef =
+      FirebaseFirestore.instance.collection("products").withConverter<Product>(
+            fromFirestore: (snapshot, options) =>
+                Product.fromJson(snapshot.data()!),
+            toFirestore: (value, options) => value.toJson(),
+          );
+  Stream<QuerySnapshot<Product?>> streamData() {
+    return productRef.snapshots();
   }
 
   void deleteProduct(String docId) async {
