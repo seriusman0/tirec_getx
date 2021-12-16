@@ -6,6 +6,7 @@ class Product {
   String? note;
   String? status;
   String? rec;
+  String? image;
 
   Product(
       {this.name,
@@ -14,7 +15,8 @@ class Product {
       this.lDate,
       this.note,
       this.status,
-      this.rec});
+      this.rec,
+      this.image});
 
   Product.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -24,6 +26,7 @@ class Product {
     note = json['note'];
     status = json['status'].toString();
     rec = json['rec'].toString();
+    image = json['image'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +38,7 @@ class Product {
     data['note'] = note;
     data['status'] = status;
     data['rec'] = rec;
+    data['image'] = image;
     return data;
   }
 }

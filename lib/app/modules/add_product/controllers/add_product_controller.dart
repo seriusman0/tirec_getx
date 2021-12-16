@@ -11,6 +11,7 @@ class AddProductController extends GetxController {
   late TextEditingController noteC;
   late TextEditingController statusC;
   late TextEditingController recC;
+  late TextEditingController imageC;
 
   final productRef =
       FirebaseFirestore.instance.collection("products").withConverter(
@@ -32,6 +33,7 @@ class AddProductController extends GetxController {
         note: "",
         status: false.toString(),
         rec: false.toString(),
+        image: "",
       ));
 
       Get.defaultDialog(
@@ -58,6 +60,12 @@ class AddProductController extends GetxController {
   onInit() {
     nameC = TextEditingController();
     priceC = TextEditingController();
+    fDateC = TextEditingController();
+    lDateC = TextEditingController();
+    noteC = TextEditingController();
+    statusC = TextEditingController();
+    recC = TextEditingController();
+    imageC = TextEditingController();
     super.onInit();
   }
 
@@ -65,6 +73,12 @@ class AddProductController extends GetxController {
   onClose() {
     nameC.dispose();
     priceC.dispose();
+    fDateC.dispose();
+    lDateC.dispose();
+    noteC.dispose();
+    statusC.dispose();
+    recC.dispose();
+    imageC.dispose();
     super.onClose();
   }
 }

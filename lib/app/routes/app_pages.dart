@@ -2,10 +2,14 @@ import 'package:get/get.dart';
 
 import 'package:tirec_getx/app/modules/add_product/bindings/add_product_binding.dart';
 import 'package:tirec_getx/app/modules/add_product/views/add_product_view.dart';
+import 'package:tirec_getx/app/modules/detail_product/bindings/detail_product_binding.dart';
+import 'package:tirec_getx/app/modules/detail_product/views/detail_product_view.dart';
 import 'package:tirec_getx/app/modules/edit_product/bindings/edit_product_binding.dart';
 import 'package:tirec_getx/app/modules/edit_product/views/edit_product_view.dart';
 import 'package:tirec_getx/app/modules/home/bindings/home_binding.dart';
 import 'package:tirec_getx/app/modules/home/views/home_view.dart';
+import 'package:tirec_getx/app/modules/item_card/bindings/item_card_binding.dart';
+import 'package:tirec_getx/app/modules/item_card/views/item_card_view.dart';
 import 'package:tirec_getx/app/modules/login/bindings/login_binding.dart';
 import 'package:tirec_getx/app/modules/login/views/login_view.dart';
 import 'package:tirec_getx/app/modules/otp/bindings/otp_binding.dart';
@@ -14,6 +18,8 @@ import 'package:tirec_getx/app/modules/reset_password/bindings/reset_password_bi
 import 'package:tirec_getx/app/modules/reset_password/views/reset_password_view.dart';
 import 'package:tirec_getx/app/modules/signup/bindings/signup_binding.dart';
 import 'package:tirec_getx/app/modules/signup/views/signup_view.dart';
+import 'package:tirec_getx/app/modules/splash/bindings/splash_binding.dart';
+import 'package:tirec_getx/app/modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
@@ -57,6 +63,16 @@ class AppPages {
       name: _Paths.EDIT_PRODUCT,
       page: () => EditProductView(),
       binding: EditProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PRODUCT,
+      page: () => DetailProductView(),
+      binding: DetailProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }
