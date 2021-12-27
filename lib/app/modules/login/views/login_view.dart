@@ -29,7 +29,7 @@ class LoginView extends GetView<LoginController> {
                 children: [
                   SizedBox(height: SizeConfig.screenHeight * 0.04),
                   Text(
-                    "Welcome Back",
+                    "Welcome Back Serius",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: getProportionateScreenWidth(28),
